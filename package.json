@@ -1,0 +1,28 @@
+{
+  "name": "2020-2021-pai-react-reactjs",
+  "version": "1.0.0",
+  "description": "This directory is organised as follows:",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha --recursive",
+    "validate": "cat codecov.yml | curl --data-binary @- https://codecov.io/validate",
+    "report": "c8 --reporter=json mocha --recursive",
+    "codecov": "curl -s https://codecov.io/bash | bash",
+    "docs": "jsdoc -c jsdoc.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PAI-ULL/2020-2021-pai-react-reactjs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PAI-ULL/2020-2021-pai-react-reactjs/issues"
+  },
+  "homepage": "https://github.com/PAI-ULL/2020-2021-pai-react-reactjs#readme"
+}
