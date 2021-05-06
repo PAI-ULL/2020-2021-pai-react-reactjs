@@ -1,0 +1,37 @@
+/**
+  Universidad de La Laguna
+  Escuela Superior de Ingeniería y Tecnología
+  Grado en Ingeniería Informática
+  Programación de Aplicaciones Interactiva
+  Author: Francisco Javier Arocas Herrera and Daniel Barroso Rocío
+  Date: 6 of May of 2021
+  Desc: A simple clock in React JS to test the states 
+**/
+
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 48px;
+  background-color: black;
+  color: white;
+}
+
+body {
+  width: inherit;
+  height: inherit;
+  margin: 0;
+}
+
+#root {
+  width: inherit;
+  height: inherit;
+}
+
+.Clock {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
