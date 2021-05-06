@@ -2,12 +2,13 @@
   "name": "2020-2021-pai-react-reactjs",
   "version": "1.0.0",
   "description": "This directory is organised as follows:",
-  "main": "index.js",
+  "main": "src/app.js",
   "type": "module",
   "directories": {
     "test": "tests"
   },
   "scripts": {
+    "start": "node src/app.js",
     "test": "mocha --recursive",
     "validate": "cat codecov.yml | curl --data-binary @- https://codecov.io/validate",
     "report": "c8 --reporter=json mocha --recursive",
@@ -24,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/PAI-ULL/2020-2021-pai-react-reactjs/issues"
   },
-  "homepage": "https://github.com/PAI-ULL/2020-2021-pai-react-reactjs#readme"
+  "homepage": "https://github.com/PAI-ULL/2020-2021-pai-react-reactjs#readme",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "express": "^4.17.1"
+  }
 }
