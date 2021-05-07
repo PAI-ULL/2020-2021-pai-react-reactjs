@@ -1,0 +1,75 @@
+/**
+  Universidad de La Laguna
+  Escuela Superior de Ingeniería y Tecnología
+  Grado en Ingeniería Informática
+  Programación de Aplicaciones Interactiva
+  Author: Francisco Javier Arocas Herrera and Daniel Barroso Rocío
+  Date: 7 of May of 2021
+  Desc: A simple example of background colors using React. We can change the backgrounds colors of some divs using buttons
+**/
+
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 32px;
+}
+
+body {
+  width: inherit;
+  height: inherit;
+  margin: 0;
+}
+
+#root {
+  width: inherit;
+  height: inherit;
+}
+
+#colorContainer {
+  width: inherit;
+  height: inherit;
+}
+
+#warningMessage {
+  background-color: gold;
+  color: darkgoldenrod;
+  border: 1px solid darkgoldenrod;
+  box-shadow: 1px 1px 5px gray;
+  border-radius: 4px;
+  text-align: center;
+  padding: 30px;
+  width: 50%;
+  position: absolute;
+  top: 45%;
+  left: 25%;
+}
+
+.options {
+  text-align: center;
+}
+
+.color {
+  height: 50%;
+  width: inherit;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+}
+
+.blue {
+  background-color: blue;
+  color: white;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.black {
+  background-color: black;
+  color: white;
+}
+
+.white {
+  background-color: white;
+}
