@@ -18,9 +18,11 @@
   * @lassdesc A advanced clock in React JS to test the states 
   */
 const CanvasClock = class extends React.Component {
-  #clock = undefined;
-  #size = undefined;
-  #canvasID = 'clock';
+  /** @private */
+  #clock = undefined; /** It contains the clock class. This class have the model and view of the clock */
+  #size = undefined; /** The size of the canvas clock */
+  #canvasID = 'clock'; /** The ID of the canvas which will contains the clock */
+  
   /**
   * Creates a clock instance. It create a state with the current date
   * @param {Object} props The properties passed to the Clock instance
