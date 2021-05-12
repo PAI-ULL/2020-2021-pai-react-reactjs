@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "This directory is organised as follows:",
   "main": "src/app.js",
-  "type": "module",
   "directories": {
     "test": "tests"
   },
