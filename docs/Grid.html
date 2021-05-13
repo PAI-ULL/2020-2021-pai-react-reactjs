@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: CanvasClock</title>
+    <title>JSDoc: Class: Grid</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: CanvasClock</h1>
+    <h1 class="page-title">Class: Grid</h1>
 
     
 
@@ -28,7 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>CanvasClock<span class="signature">(props)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Grid<span class="signature">(size, canvasContext, numberLines)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>Draw a grid in the canvas. User can choose the color of the lines, the size of the circle and also the size of the line</p></div>
         
     
 </header>
@@ -39,18 +41,16 @@
         
 
     
-
-    
-    <h4 class="name" id="CanvasClock"><span class="type-signature"></span>new CanvasClock<span class="signature">(props)</span><span class="type-signature"></span></h4>
+    <h2>Constructor</h2>
     
 
     
+    <h4 class="name" id="Grid"><span class="type-signature"></span>new Grid<span class="signature">(size, canvasContext, numberLines)</span><span class="type-signature"></span></h4>
+    
+
+    
 
 
-
-<div class="description">
-    <p>Creates a clock instance. It create a state with the current date</p>
-</div>
 
 
 
@@ -85,13 +85,13 @@
 
         <tr>
             
-                <td class="name"><code>props</code></td>
+                <td class="name"><code>size</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">Number</span>
 
 
             
@@ -101,7 +101,53 @@
 
             
 
-            <td class="description last"><p>The properties passed to the Clock instance</p></td>
+            <td class="description last"><p>The size of the canvas to draw the grid</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>canvasContext</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DOM</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The context of the current canvas to draw</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>numberLines</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of the lines of the grid</p></td>
         </tr>
 
     
@@ -142,7 +188,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line30">line 30</a>
+        <a href="js_halma_grid.js.html">js/halma/grid.js</a>, <a href="js_halma_grid.js.html#line38">line 38</a>
     </li></ul></dd>
     
 
@@ -198,7 +244,7 @@
     
 
     
-    <h4 class="name" id="componentDidMount"><span class="type-signature"></span>componentDidMount<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="draw"><span class="type-signature"></span>draw<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -206,8 +252,7 @@
 
 
 <div class="description">
-    <p>Component did mount. It is called when the Clock instance is called
-It creates an interval to change the class every second and update the clock</p>
+    <p>Draw the grid in the canvas. It draw a #numberLines lines from left to right and from top to bottom</p>
 </div>
 
 
@@ -251,7 +296,7 @@ It creates an interval to change the class every second and update the clock</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line40">line 40</a>
+        <a href="js_halma_grid.js.html">js/halma/grid.js</a>, <a href="js_halma_grid.js.html#line59">line 59</a>
     </li></ul></dd>
     
 
@@ -282,12 +327,39 @@ It creates an interval to change the class every second and update the clock</p>
 
 
         
-            
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>Grid<span class="signature">(size, canvasContext, numberLines)</span><span class="type-signature"></span></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
 
     
 
     
-    <h4 class="name" id="componentDidUpdate"><span class="type-signature"></span>componentDidUpdate<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Grid"><span class="type-signature"></span>new Grid<span class="signature">(size, canvasContext, numberLines)</span><span class="type-signature"></span></h4>
     
 
     
@@ -295,8 +367,7 @@ It creates an interval to change the class every second and update the clock</p>
 
 
 <div class="description">
-    <p>Called each time the component is updated
-It will render the clock again (Every second)</p>
+    <p>Constructor of the class. It recive the parameters and store it in the class</p>
 </div>
 
 
@@ -305,6 +376,101 @@ It will render the clock again (Every second)</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The size of the canvas</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>canvasContext</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DOM</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>numberLines</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -340,7 +506,7 @@ It will render the clock again (Every second)</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line61">line 61</a>
+        <a href="js_halma_grid.js.html">js/halma/grid.js</a>, <a href="js_halma_grid.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
@@ -370,13 +536,33 @@ It will render the clock again (Every second)</p>
 
 
 
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
         
             
 
     
 
     
-    <h4 class="name" id="componentWillUnmount"><span class="type-signature"></span>componentWillUnmount<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="draw"><span class="type-signature"></span>draw<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -384,9 +570,7 @@ It will render the clock again (Every second)</p>
 
 
 <div class="description">
-    <p>Component will unmount. It is called when the component es unmounted (Or deleted)
-It stop the interval, because if you doesnt stop it. It will called again even though the instance
-of this object was deleted. And in this case, it will generate an error.</p>
+    <p>Draw the grid in the canvas. It draw a #numberLines lines from left to right and from top to bottom</p>
 </div>
 
 
@@ -430,207 +614,7 @@ of this object was deleted. And in this case, it will generate an error.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line53">line 53</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="render"><span class="type-signature"></span>render<span class="signature">()</span><span class="type-signature"> &rarr; {JSX}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Render returns a clock title and the current date.
-Remember, that, when the state of the component change, this functions is called again</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line80">line 80</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A jsx which contains the render</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">JSX</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="tick"><span class="type-signature"></span>tick<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Change the current state of the class with the new date
-Remember that, if you change the state, the class will be render again</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line69">line 69</a>
+        <a href="js_halma_grid.js.html">js/halma/grid.js</a>, <a href="js_halma_grid.js.html#line59">line 59</a>
     </li></ul></dd>
     
 

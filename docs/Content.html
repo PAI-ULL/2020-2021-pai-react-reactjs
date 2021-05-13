@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: CanvasClock</title>
+    <title>JSDoc: Class: Content</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: CanvasClock</h1>
+    <h1 class="page-title">Class: Content</h1>
 
     
 
@@ -28,7 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>CanvasClock<span class="signature">(props)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Content<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>Contains the content of the web page. Currently its only the Halma Square, but it can has more content</p></div>
         
     
 </header>
@@ -39,74 +41,23 @@
         
 
     
-
-    
-    <h4 class="name" id="CanvasClock"><span class="type-signature"></span>new CanvasClock<span class="signature">(props)</span><span class="type-signature"></span></h4>
+    <h2>Constructor</h2>
     
 
     
-
-
-
-<div class="description">
-    <p>Creates a clock instance. It create a state with the current date</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
+    <h4 class="name" id="Content"><span class="type-signature"></span>new Content<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
-        <tr>
-            
-                <td class="name"><code>props</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
 
 
-            
-            </td>
 
-            
 
-            
 
-            <td class="description last"><p>The properties passed to the Clock instance</p></td>
-        </tr>
 
-    
-    </tbody>
-</table>
+
+
 
 
 
@@ -142,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line30">line 30</a>
+        <a href="js_halma_web.js.html">js/halma/web.js</a>, <a href="js_halma_web.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -198,274 +149,6 @@
     
 
     
-    <h4 class="name" id="componentDidMount"><span class="type-signature"></span>componentDidMount<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Component did mount. It is called when the Clock instance is called
-It creates an interval to change the class every second and update the clock</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line40">line 40</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="componentDidUpdate"><span class="type-signature"></span>componentDidUpdate<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Called each time the component is updated
-It will render the clock again (Every second)</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line61">line 61</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="componentWillUnmount"><span class="type-signature"></span>componentWillUnmount<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Component will unmount. It is called when the component es unmounted (Or deleted)
-It stop the interval, because if you doesnt stop it. It will called again even though the instance
-of this object was deleted. And in this case, it will generate an error.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line53">line 53</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id="render"><span class="type-signature"></span>render<span class="signature">()</span><span class="type-signature"> &rarr; {JSX}</span></h4>
     
 
@@ -474,8 +157,7 @@ of this object was deleted. And in this case, it will generate an error.</p>
 
 
 <div class="description">
-    <p>Render returns a clock title and the current date.
-Remember, that, when the state of the component change, this functions is called again</p>
+    <p>Render the content. It will return the Halma with the number of squares of pieces and the number of pieces to start</p>
 </div>
 
 
@@ -519,7 +201,7 @@ Remember, that, when the state of the component change, this functions is called
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line80">line 80</a>
+        <a href="js_halma_web.js.html">js/halma/web.js</a>, <a href="js_halma_web.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -548,7 +230,7 @@ Remember, that, when the state of the component change, this functions is called
 
         
 <div class="param-desc">
-    <p>A jsx which contains the render</p>
+    <p>The component rendered it contains a div and inside this div the Halma Game</p>
 </div>
 
 
@@ -572,12 +254,39 @@ Remember, that, when the state of the component change, this functions is called
 
 
         
-            
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>Content<span class="signature">(props)</span><span class="type-signature"></span></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
 
     
 
     
-    <h4 class="name" id="tick"><span class="type-signature"></span>tick<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Content"><span class="type-signature"></span>new Content<span class="signature">(props)</span><span class="type-signature"></span></h4>
     
 
     
@@ -585,8 +294,164 @@ Remember, that, when the state of the component change, this functions is called
 
 
 <div class="description">
-    <p>Change the current state of the class with the new date
-Remember that, if you change the state, the class will be render again</p>
+    <p>Create the content class. It will render a Halma Board with the default configuration</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Contains the properties of the class. In this case, is a empty object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_halma_web.js.html">js/halma/web.js</a>, <a href="js_halma_web.js.html#line66">line 66</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="render"><span class="type-signature"></span>render<span class="signature">()</span><span class="type-signature"> &rarr; {JSX}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Render the content. It will return the Halma with the number of squares of pieces and the number of pieces to start</p>
 </div>
 
 
@@ -630,7 +495,7 @@ Remember that, if you change the state, the class will be render again</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="js_clockCanvas_canvasClock.js.html">js/clockCanvas/canvasClock.js</a>, <a href="js_clockCanvas_canvasClock.js.html#line69">line 69</a>
+        <a href="js_halma_web.js.html">js/halma/web.js</a>, <a href="js_halma_web.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -655,6 +520,28 @@ Remember that, if you change the state, the class will be render again</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The component rendered it contains a div and inside this div the Halma Game</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">JSX</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/halma/point2D.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/halma/point2D.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+  * Universidad de La Laguna
+  * Escuela Superior de Ingeniería y Tecnología
+  * Grado en Ingeniería Informática
+  * Programación de Aplicaciones Interactivas
+  *
+  * @file Point2D
+  * @author Francisco Javier Arocas Herrera
+  * @since 22 de Mayo de 2021
+  * @desc An a simple 2D Point Class. It contains the X and Y variable of a Point, and some methods to operate with the same Point or with another Point
+  * @link http://10.6.128.117:8080/documentation/practica-10/
+  */
+
+'use strict';
+
+/**
+ * @class
+ * @classdesc An a simple 2D Point Class. It contains the X and Y variable of a Point, and some methods to operate with the same Point or with another Point
+ * @param {Number} coordenateX Coordenate X of the point
+ * @param {Number} coordenateY Coordenate Y of the point
+ */
+const Point2D = class {
+  #coordenateX;
+  #coordenateY;
+
+  /**
+   * It recive the coordenate X and Y of a Point and store it in the class instance
+   * @param {Number} coordenateX Coordenate X of the point
+   * @param {Number} coordenateY Coordenate Y of the point
+   */
+  constructor(coordenateX = 0, coordenateY = 0) {
+    if(typeof coordenateX !== 'number' || typeof coordenateY !== 'number') {
+      throw new Error('Error, you can only create a Point2D instance with numbers');
+    }
+    this.#coordenateX = coordenateX;
+    this.#coordenateY = coordenateY;
+  }
+
+  /**
+   * Get the coordenate X of the point
+   * @returns {Number} The coordenate X of the Point
+   */
+  getCoordenateX() {
+    return this.#coordenateX;
+  }
+
+  /**
+   * Get the coordenate Y of the point
+   * @returns {Number} The coordenate Y of the Point
+   */
+  getCoordenateY() {
+    return this.#coordenateY;
+  }
+
+  /**
+   * Set the Coordenate X of the Point
+   * @param {Number} newCoordenateX The new coordenate X
+   */
+  setCoordenateX(newCoordenateX) {
+    if(typeof newCoordenateX !== 'number') {
+      throw new Error('Error, the param to set the coordenate X must be a number');
+    }
+    this.#coordenateX = newCoordenateX;
+  }
+
+  /**
+   * Set the Coordenate Y of the Point
+   * @param {Number} newCoordenateX The new coordenate Y
+   */
+  setCoordenateY(newCoordenateY) {
+    if(typeof newCoordenateY !== 'number') {
+      throw new Error('Error, the param to set the coordenate Y must be a number');
+    }
+    this.#coordenateY = newCoordenateY;
+  }
+
+  /**
+   * Returns the point converted to String
+   * @returns {String} The point converted to String
+   */
+  toString() {
+    return '{' + this.#coordenateX + ', ' + this.#coordenateY + '}';
+  }
+
+  /**
+   * Check if two Point2D are equal. These points are equal, where coordenates X and coordeantes Y are the same coordenate
+   * @param {Point2D} otherPoint The other point to check if is equal to this point 
+   * @returns {Boolean} If both points are the same point, or if are differents points
+   */
+  equal(otherPoint) {
+    return (this.#coordenateX === otherPoint.getCoordenateX() &amp;&amp; this.#coordenateY === otherPoint.getCoordenateY());
+  }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="CanvasClock.html">CanvasClock</a></li><li><a href="Clock.html">Clock</a></li><li><a href="ColorDiv.html">ColorDiv</a></li><li><a href="ColorRadios.html">ColorRadios</a></li><li><a href="Colors.html">Colors</a></li><li><a href="Content.html">Content</a></li><li><a href="Footer.html">Footer</a></li><li><a href="Grid.html">Grid</a></li><li><a href="Halma.html">Halma</a></li><li><a href="Halma%2520Model.html">Halma Model</a></li><li><a href="HalmaBoard.html">HalmaBoard</a></li><li><a href="HalmaModel.html">HalmaModel</a></li><li><a href="HalmaSquare.html">HalmaSquare</a></li><li><a href="Header.html">Header</a></li><li><a href="Market.html">Market</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="Point2D.html">Point2D</a></li><li><a href="Warning%2520Message.html">Warning Message</a></li><li><a href="WarningMessage.html">WarningMessage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#capitalize">capitalize</a></li><li><a href="global.html#COLORS">COLORS</a></li><li><a href="global.html#EMPTY_SQUARE">EMPTY_SQUARE</a></li><li><a href="global.html#EXPRESS">EXPRESS</a></li><li><a href="global.html#FOOTER_LI_CONTENT">FOOTER_LI_CONTENT</a></li><li><a href="global.html#GRID_COLOR">GRID_COLOR</a></li><li><a href="global.html#GRID_LINE_SIZE">GRID_LINE_SIZE</a></li><li><a href="global.html#helloWorld">helloWorld</a></li><li><a href="global.html#OCCUPIED_SQUARE">OCCUPIED_SQUARE</a></li><li><a href="global.html#SELECTED_SQUARE">SELECTED_SQUARE</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu May 13 2021 13:52:12 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

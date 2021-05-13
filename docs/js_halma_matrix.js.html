@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: js/clock.js</title>
+    <title>JSDoc: Source: js/halma/matrix.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: js/clock.js</h1>
+    <h1 class="page-title">Source: js/halma/matrix.js</h1>
 
     
 
@@ -32,80 +32,75 @@
   * Grado en Ingeniería Informática
   * Programación de Aplicaciones Interactivas
   *
-  * @file Clock
-  * @author Francisco Javier Arocas Herrera and Daniel Barroso Rocío
-  * @since 6 of May of 2021
-  * @desc A simple clock in React JS to test the states 
-  * @link http://10.6.128.117:8080/reactJS/clock.html
+  * @file Matrix
+  * @author Francisco Javier Arocas Herrera
+  * @since 28 de Abril de 2021
+  * @desc A class which generate a 2D Matrix. You pass a number of Rows, Cols and a default value for the Matrix
+  * @link http://10.6.128.117:8080/documentation/practica-13/
   */
 
 'use strict';
 
 /**
- * @class Clock
- * @lassdesc A simple clock in React JS to test the states 
+ * @class Matrix
+ * @classdesc A class which generate a 2D Matrix. You pass a number of Rows, Cols and a default value for the Matrix 
  */
-const Clock = class extends React.Component {
+const Matrix = class {
+  /** @private */
+  #numberRows; /** Number of Rows of the Matrix */
+  #numberCols; /** Number of Cols of the Matrix */
+  #matrix; /** Matrix Items */
+
   /**
-   * Creates a clock instance. It create a state with the current date
-   * @param {Object} props The properties passed to the Clock instance
+   * Recive the parameters of the Matrix, and generate the new Matrix 
+   * @param {Number} numberRows The number of rows of the new matrix
+   * @param {Number} numberCols The number of cols of the new matrix
+   * @param {Number | String | Object} defaultValue The default value of the Matrix elements
    */
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
+  constructor(numberRows, numberCols, defaultValue) {
+    this.#numberRows = numberRows;
+    this.#numberCols = numberCols;
+    this.#createMatrix(defaultValue);
   }
 
   /**
-   * Component did mount. It is called when the Clock instance is called
-   * It creates an interval to change the class every second and update the clock
+   * Generate the new Matrix. Create the Arrays of the Matrix in the class instance, and fill all elements
+   * of the Matrix with the default value
+   * @param {Number | String | Object} defaultValue The default value of the Matrix elements
    */
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+  #createMatrix(defaultValue) {
+    this.#matrix = [];
+    for(let rows = 0; rows &lt; this.#numberRows; ++rows) {
+      let currentRow = [];
+      for(let cols = 0; cols &lt; this.#numberCols; ++cols) {
+        currentRow.push(defaultValue);
+      }
+      this.#matrix.push(currentRow);
+    }
   }
 
   /**
-   * Component will unmount. It is called when the component es unmounted (Or deleted)
-   * It stop the interval, because if you doesnt stop it. It will called again even though the instance
-   * of this object was deleted. And in this case, it will generate an error.
+   * Get a item of the Matrix
+   * @param {Number} row The number of the row to get the item
+   * @param {Number} col The number of the col to get the item
+   * @returns {Number | String | Object} The Matrix item to get
    */
-  componentWillUnmount() {
-    clearInterval(this.timerID);
+  get(row, col) {
+    return this.#matrix[row][col];
   }
 
   /**
-   * Change the current state of the class with the new date
-   * Remember that, if you change the state, the class will be render again
+   * Set a item of the Matrix
+   * @param {Number} row The number of the row to set the item
+   * @param {Number} col The number of the col to set the item
+   * @param {Number | String | Object} value The Matrix item to set
+   * @returns {Number | String | Object} The item to set
    */
-  tick() {
-    this.setState({
-      date: new Date()
-    });
+  set(row, col, value) {
+    this.#matrix[row][col] = value;
+    return value;
   }
-
-  /**
-   * Render returns a clock title and the current date.
-   * Remember, that, when the state of the component change, this functions is called again
-   * @returns {JSX} A jsx which contains the render 
-   */
-  render() {
-    return (
-      &lt;div className="Clock">
-        &lt;h1>{this.state.date.toLocaleTimeString()}&lt;/h1>
-      &lt;/div>
-    );
-  }
-}
-
-/**
- * React render, which will render the component (First parameter) in the HTML DOM (Second parameter)
- */
-ReactDOM.render(
-  &lt;Clock />,
-  document.getElementById('root')
-);</code></pre>
+}</code></pre>
         </article>
     </section>
 

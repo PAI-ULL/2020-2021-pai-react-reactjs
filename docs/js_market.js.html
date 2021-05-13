@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/market.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/market.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+  * Universidad de La Laguna
+  * Escuela Superior de Ingeniería y Tecnología
+  * Grado en Ingeniería Informática
+  * Programación de Aplicaciones Interactivas
+  *
+  * @file Market
+  * @author Francisco Javier Arocas Herrera and Daniel Barroso Rocío
+  * @since 12 of May of 2021
+  * @desc A simple example of forms and lists (with keys), a market list with items and prices
+  * @link http://10.6.128.117:8080/reactJS/market.html
+  */
+
+ 'use strict';
+
+ const CreateItem = function(name, amount, price) {
+   return {name, amount, price};
+ }
+
+ const Item = class extends React.Component {
+  constructor(props) {
+    super(props);
+ }
+ render() {
+  return &lt;li>
+  &lt;span>{this.props.name}&lt;/span>
+  &lt;span>{this.props.price}$&lt;/span>
+  &lt;span>{this.props.amount}&lt;/span>
+&lt;/li>
+ }
+}
+
+ const InputForm = class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({[event.target.name]: event.target.value});
+
+  }
+
+  handleSubmit(event) {
+    if (this.state.name &amp;&amp; this.state.amount &amp;&amp;  this.state.price) {
+      this.props.submit(new CreateItem(this.state.name, this.state.amount, this.state.price));
+      this.state.name = '';
+      this.state.amount = '';
+      this.state.price = '';
+    }
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      &lt;div>
+        &lt;form class="form" onSubmit={this.handleSubmit}>
+        &lt;label>
+          &lt;span class="inputName">Name:&lt;/span>
+          &lt;span class="input">&lt;input type="text" value={this.state.name} name="name" onChange={this.handleChange} />&lt;/span>
+        &lt;/label>
+        &lt;br/>
+        &lt;label>
+          &lt;span class="inputName">Amount:&lt;/span>
+          &lt;span class="input">&lt;input type="number" value={this.state.amount} name="amount" onChange={this.handleChange} />&lt;/span>
+        &lt;/label>
+        &lt;br/>
+        &lt;label>
+          &lt;span class="inputName">Price:&lt;/span>
+          &lt;span class="input">&lt;input type="number" value={this.state.price} name="price" onChange={this.handleChange} />&lt;/span>
+        &lt;/label>
+        &lt;br/>
+        &lt;label>
+          &lt;input type="submit" value="Submit" />
+        &lt;/label>
+      &lt;/form>
+      &lt;/div>
+    );
+  }
+ }
+ /**
+ * @class Market
+ * @classdesc The main component. It has the logic to create list items from an input form
+ */
+ const Market = class extends React.Component {
+  /**
+   * Creates the market component
+   * @param {Object} props Recieve the names of both divs which contains the colors
+   */
+  constructor(props) {
+    super(props);
+    let exampleMarketItem = [CreateItem('apple', 30, 30), CreateItem('pear', 30, 30)];
+    this.state = {
+      marketItems: exampleMarketItem,
+    }
+
+    /* 
+      We use this, because if not, when call changeColor in ColorRadio component, 
+      it will use the this of this component instead Color this
+    */
+    this.addItem = this.addItem.bind(this); 
+  }
+  
+  addItem (item) {
+    this.setState({marketItems: [...this.state.marketItems, item]});
+  }
+
+  render() {
+    let listItemsDom  =  this.state.marketItems.map((item, index) => {
+      return &lt;Item key={index.toString()} name={item.name} amount={item.amount} price={item.price}/>;
+    });
+    return (
+      &lt;div class="list">
+        &lt;ul>
+          &lt;li>
+            &lt;span>Product:&lt;/span>
+            &lt;span>Price:&lt;/span>
+            &lt;span>Amount:&lt;/span>
+          &lt;/li>
+          {listItemsDom}
+        &lt;/ul>
+        &lt;InputForm submit={this.addItem}/>
+      &lt;/div>
+    )
+  }
+
+}
+
+  
+ /**
+ * It will render the component Market into the DOM 'root'
+ */
+ReactDOM.render(
+  &lt;Market/>,
+  document.getElementById('root')
+);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="CanvasClock.html">CanvasClock</a></li><li><a href="Clock.html">Clock</a></li><li><a href="ColorDiv.html">ColorDiv</a></li><li><a href="ColorRadios.html">ColorRadios</a></li><li><a href="Colors.html">Colors</a></li><li><a href="Content.html">Content</a></li><li><a href="Footer.html">Footer</a></li><li><a href="Grid.html">Grid</a></li><li><a href="Halma.html">Halma</a></li><li><a href="Halma%2520Model.html">Halma Model</a></li><li><a href="HalmaBoard.html">HalmaBoard</a></li><li><a href="HalmaModel.html">HalmaModel</a></li><li><a href="HalmaSquare.html">HalmaSquare</a></li><li><a href="Header.html">Header</a></li><li><a href="Market.html">Market</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="Point2D.html">Point2D</a></li><li><a href="Warning%2520Message.html">Warning Message</a></li><li><a href="WarningMessage.html">WarningMessage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#capitalize">capitalize</a></li><li><a href="global.html#COLORS">COLORS</a></li><li><a href="global.html#EMPTY_SQUARE">EMPTY_SQUARE</a></li><li><a href="global.html#EXPRESS">EXPRESS</a></li><li><a href="global.html#FOOTER_LI_CONTENT">FOOTER_LI_CONTENT</a></li><li><a href="global.html#GRID_COLOR">GRID_COLOR</a></li><li><a href="global.html#GRID_LINE_SIZE">GRID_LINE_SIZE</a></li><li><a href="global.html#helloWorld">helloWorld</a></li><li><a href="global.html#OCCUPIED_SQUARE">OCCUPIED_SQUARE</a></li><li><a href="global.html#SELECTED_SQUARE">SELECTED_SQUARE</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu May 13 2021 13:52:12 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

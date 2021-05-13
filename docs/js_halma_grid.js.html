@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: js/clock.js</title>
+    <title>JSDoc: Source: js/halma/grid.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: js/clock.js</h1>
+    <h1 class="page-title">Source: js/halma/grid.js</h1>
 
     
 
@@ -26,86 +26,75 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
+            <pre class="prettyprint source linenums"><code>
+/**
   * Universidad de La Laguna
   * Escuela Superior de Ingeniería y Tecnología
   * Grado en Ingeniería Informática
   * Programación de Aplicaciones Interactivas
   *
-  * @file Clock
-  * @author Francisco Javier Arocas Herrera and Daniel Barroso Rocío
-  * @since 6 of May of 2021
-  * @desc A simple clock in React JS to test the states 
-  * @link http://10.6.128.117:8080/reactJS/clock.html
+  * @file Grid
+  * @author Francisco Javier Arocas Herrera
+  * @since 22 de Abril de 2021 | 11 de Mayo de 2021
+  * @desc Draw a grid in the canvas. User can choose the color of the lines, the size of the circle and also the size of the line
+  * @link http://10.6.128.117:8080/documentation/practica-13/
+  * NOTE: Recicled from the RandomWalk Practica
   */
 
 'use strict';
 
-/**
- * @class Clock
- * @lassdesc A simple clock in React JS to test the states 
- */
-const Clock = class extends React.Component {
-  /**
-   * Creates a clock instance. It create a state with the current date
-   * @param {Object} props The properties passed to the Clock instance
-   */
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
-
-  /**
-   * Component did mount. It is called when the Clock instance is called
-   * It creates an interval to change the class every second and update the clock
-   */
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-
-  /**
-   * Component will unmount. It is called when the component es unmounted (Or deleted)
-   * It stop the interval, because if you doesnt stop it. It will called again even though the instance
-   * of this object was deleted. And in this case, it will generate an error.
-   */
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  /**
-   * Change the current state of the class with the new date
-   * Remember that, if you change the state, the class will be render again
-   */
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
-  /**
-   * Render returns a clock title and the current date.
-   * Remember, that, when the state of the component change, this functions is called again
-   * @returns {JSX} A jsx which contains the render 
-   */
-  render() {
-    return (
-      &lt;div className="Clock">
-        &lt;h1>{this.state.date.toLocaleTimeString()}&lt;/h1>
-      &lt;/div>
-    );
-  }
-}
+import { Line } from './forms/line.js';
+import { Point2D } from './forms/point2D.js';
 
 /**
- * React render, which will render the component (First parameter) in the HTML DOM (Second parameter)
+ * The default color of the Grid
  */
-ReactDOM.render(
-  &lt;Clock />,
-  document.getElementById('root')
-);</code></pre>
+const GRID_COLOR = 'gray';
+
+/**
+ * The default size of the lines of the Grid
+ */
+const GRID_LINE_SIZE = 1;
+
+/**
+ * @class
+ * @classdesc Draw a grid in the canvas. User can choose the color of the lines, the size of the circle and also the size of the line
+ * @param {Number} size The size of the canvas to draw the grid
+ * @param {DOM} canvasContext The context of the current canvas to draw
+ * @param {Number} numberLines The number of the lines of the grid
+ */
+export const Grid = class {
+  /** @private */
+  #size; /** Size of the grid. In pixels, it contains the all size of the grid */
+  #canvasContext /** The context of the canvas to draw the grid */;
+  #numberLines; /** The number of lines, that grid will contain */
+  
+  /**
+   * Constructor of the class. It recive the parameters and store it in the class
+   * @param {Number} size The size of the canvas
+   * @param {DOM} canvasContext 
+   * @param {*} numberLines 
+   */
+  constructor(size, canvasContext, numberLines) { // Note size is Square: width = height
+    this.#size = size;
+    this.#canvasContext = canvasContext;
+    this.#numberLines = numberLines;
+  }
+
+  /**
+   * Draw the grid in the canvas. It draw a #numberLines lines from left to right and from top to bottom
+   */
+  draw() {
+    const linesDistances = Math.floor(this.#size / this.#numberLines);
+    for(let i = 0; i &lt; this.#size; i += linesDistances) {
+      const currentLineXAxe = new Line(this.#canvasContext, new Point2D(i, 0), new Point2D(i, this.#size), GRID_COLOR, GRID_LINE_SIZE);
+      currentLineXAxe.draw();
+      const currentLineYAxe = new Line(this.#canvasContext, new Point2D(0, i), new Point2D(this.#size, i), GRID_COLOR, GRID_LINE_SIZE);
+      currentLineYAxe.draw();
+    }
+  }
+
+}</code></pre>
         </article>
     </section>
 

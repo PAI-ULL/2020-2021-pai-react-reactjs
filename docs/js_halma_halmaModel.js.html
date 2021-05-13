@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/halma/halmaModel.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/halma/halmaModel.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+  * Universidad de La Laguna
+  * Escuela Superior de Ingeniería y Tecnología
+  * Grado en Ingeniería Informática
+  * Programación de Aplicaciones Interactivas
+  *
+  * @file halmaModel
+  * @author Francisco Javier Arocas Herrera
+  * @since 11 of May of 2021
+  * @desc Contains the model of the Halma Class. It contains the Logic of the game. It contains a board with the moves, and check every user move
+  * @link http://10.6.128.117:8080/documentation/practica-13/
+  */
+
+'use strict';
+
+/**
+ * An empty square. A square without piece in it. User can move a piece into this square
+ */
+const EMPTY_SQUARE = 0;
+
+/**
+ * If a square is ocupped by other piece. User cant move to this square, because, there is a piece in it
+ */
+const OCCUPIED_SQUARE = 1;
+
+/**
+ * If the current square is selected by the user. In this case, user can move this square to another square
+ */
+const SELECTED_SQUARE = 2;
+
+/**
+ * @class Halma Model
+ * @classdesc Contains the model of the Halma Class. It contains the Logic of the game. It contains a board with the moves, and check every user move
+ */
+const HalmaModel = class {
+  /**
+   * @private
+   */
+  #board = undefined; /** The board of the halma. It contains the pieces of the game and their position */
+  #numberOfMoves = 0; /** The user current number of moves. When user move a piece, it will increment by one */
+  #boardSquares = undefined; /** The size of the board of the Halma Game */
+  #numberOfPieces = undefined  /** The number of pieces of the Halma Game */
+  #currentSelectedSquare = undefined; /** If user has select a square or not */
+  #lastPieceJump = undefined; /** Contains the coordenate of the last piece which jump to other piece */
+  
+  /**
+   * Creates the Halma Model. It Will create the board matrix, and also the first pieces
+   * @param {Number} boardSquares The size (In squres) of the board. Its a square size (Example 9: 9x9)
+   * @param {Number} numberPieces The number of the pieces of the game. Usually are 9 pieces (3x3)
+   */
+  constructor(boardSquares = 9, numberPieces = 3) {
+    this.#boardSquares = boardSquares;
+    this.#numberOfPieces = numberPieces;
+    this.#generateDefaultBoard();
+  }
+
+  /**
+   * Generate the default board of Halma Game. The default board is when user start the game
+   */
+  #generateDefaultBoard() {
+    this.#board = new Matrix(this.#boardSquares, this.#boardSquares, EMPTY_SQUARE); // Change false to constant
+    this.#numberOfMoves = 0;
+    for(let row = 0; row &lt; this.#numberOfPieces; row++) {
+      for(let col = 0; col &lt; this.#numberOfPieces; col++) {
+        this.#board.set(this.#boardSquares - 1 - row, col, OCCUPIED_SQUARE); // CHANGE true to constant
+      }
+    }
+    this.#numberOfMoves = 0;
+  }
+
+  getSquare(row, col) {
+    return this.#board.get(row, col);
+  }
+
+  /**
+   * Get the total of moves of the game. Every time user move, the number of moves will increase one number
+   * @returns {Number} The current of numbers of move of the game
+   */
+  getMoves() {
+    return this.#numberOfMoves;
+  }
+
+  /**
+   * Reset the board. It moves the pieces into to korner, and will put the numberOfMoves to 0
+   */
+  reset() {
+    this.#generateDefaultBoard();
+    this.#currentSelectedSquare = undefined;
+    this.#lastPieceJump = undefined;
+    return this;
+  }
+
+  /**
+   * Unselect the last piece select by the user. If user has select a piece in the last movement, it will delete it.
+   */
+  #unselectPiece() {
+    if(this.#currentSelectedSquare) {
+      this.#board.set(this.#currentSelectedSquare.getCoordenateY(), this.#currentSelectedSquare.getCoordenateX(), OCCUPIED_SQUARE);
+      this.#currentSelectedSquare = undefined;
+    }
+  }
+
+  /**
+   * Check if the square can jumpo to another piece. Remember, if there is a square next to the selected piece, it can jump
+   * @param {Point2D} selectedSquare The selected squre where user is trying to jump
+   * @returns {Boolean} If the current piece can jump to the square selected by user
+   */
+  #checkIfCanJumpPiece(selectedSquare) {
+    const absDistanceX = Math.abs(this.#currentSelectedSquare.getCoordenateX() - selectedSquare.getCoordenateX()); 
+    const absDistanceY = Math.abs(this.#currentSelectedSquare.getCoordenateY() - selectedSquare.getCoordenateY());
+    if(absDistanceX &lt;= 2 &amp;&amp; absDistanceY &lt;=2 &amp;&amp; absDistanceX !== 1 &amp;&amp; absDistanceY !== 1) {
+      let distanceXFromSelected = selectedSquare.getCoordenateX() - this.#currentSelectedSquare.getCoordenateX();
+      let distanceYFromSelected = selectedSquare.getCoordenateY() - this.#currentSelectedSquare.getCoordenateY();
+      if(distanceXFromSelected % 2 === 0) {
+        distanceXFromSelected /= 2;
+      }
+      if(distanceYFromSelected % 2 === 0) {
+        distanceYFromSelected /= 2;
+      }
+      if(this.#board.get(this.#currentSelectedSquare.getCoordenateY() + distanceYFromSelected, 
+        this.#currentSelectedSquare.getCoordenateX() + distanceXFromSelected) === OCCUPIED_SQUARE) {
+          return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Move a Circle to another Square. It is called after check that the move is possible
+   * @param {Point2D} selectedSquare The destination square to move the circle
+   */
+  #move(selectedSquare) {
+    this.#board.set(this.#currentSelectedSquare.getCoordenateY(), this.#currentSelectedSquare.getCoordenateX(), EMPTY_SQUARE);
+    this.#board.set(selectedSquare.getCoordenateY(), selectedSquare.getCoordenateX(), OCCUPIED_SQUARE);
+    this.#currentSelectedSquare = undefined;
+  }
+
+  /**
+   * Check if the selectedSquare is near to the currentSelectedSquare (Near is next square, only 1 of distance)
+   * @param {Point2D} selectedSquare Last square selected by the user, to move the circle
+   * @returns {Boolean} If the square selected by user is near to the last one selected by the user
+   */
+  #nearSquare(selectedSquare) {
+    const distanceX = Math.abs(this.#currentSelectedSquare.getCoordenateX() - selectedSquare.getCoordenateX()); 
+    const distanceY = Math.abs(this.#currentSelectedSquare.getCoordenateY() - selectedSquare.getCoordenateY());
+    return (distanceX &lt;= 1 &amp;&amp; distanceY &lt;= 1);
+  }
+
+  /**
+   * Select a square if there is a piece selected. If pieces is already selected, it will calculate if the position to move
+   * is correct. In this case, it will move the piece, and increse the counter
+   * @param {Point2D} selectedSquare The square selected, if we select the squre row 2, and col 3, it will be x = 2, y = 3
+   */
+  selectOrMovePiece(selectedSquare) {
+    if(this.#board.get(selectedSquare.getCoordenateY(), selectedSquare.getCoordenateX()) === OCCUPIED_SQUARE) {
+      this.#unselectPiece();
+      this.#currentSelectedSquare = selectedSquare;
+      this.#board.set(selectedSquare.getCoordenateY(), selectedSquare.getCoordenateX(), SELECTED_SQUARE);
+    } else if(this.#currentSelectedSquare) {
+      if(this.#nearSquare(selectedSquare)) {
+        this.#move(selectedSquare);
+        this.#numberOfMoves++;
+      } else if(this.#checkIfCanJumpPiece(selectedSquare)) {
+        if(this.#lastPieceJump &amp;&amp; !this.#currentSelectedSquare.equal(this.#lastPieceJump)) {
+          this.#lastPieceJump = undefined;
+        }
+        this.#move(selectedSquare);
+        if(!this.#lastPieceJump) {
+          this.#numberOfMoves++;
+        }
+        this.#lastPieceJump = selectedSquare;
+      }
+    }
+    return this;
+  }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="CanvasClock.html">CanvasClock</a></li><li><a href="Clock.html">Clock</a></li><li><a href="ColorDiv.html">ColorDiv</a></li><li><a href="ColorRadios.html">ColorRadios</a></li><li><a href="Colors.html">Colors</a></li><li><a href="Content.html">Content</a></li><li><a href="Footer.html">Footer</a></li><li><a href="Grid.html">Grid</a></li><li><a href="Halma.html">Halma</a></li><li><a href="Halma%2520Model.html">Halma Model</a></li><li><a href="HalmaBoard.html">HalmaBoard</a></li><li><a href="HalmaModel.html">HalmaModel</a></li><li><a href="HalmaSquare.html">HalmaSquare</a></li><li><a href="Header.html">Header</a></li><li><a href="Market.html">Market</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="Point2D.html">Point2D</a></li><li><a href="Warning%2520Message.html">Warning Message</a></li><li><a href="WarningMessage.html">WarningMessage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#capitalize">capitalize</a></li><li><a href="global.html#COLORS">COLORS</a></li><li><a href="global.html#EMPTY_SQUARE">EMPTY_SQUARE</a></li><li><a href="global.html#EXPRESS">EXPRESS</a></li><li><a href="global.html#FOOTER_LI_CONTENT">FOOTER_LI_CONTENT</a></li><li><a href="global.html#GRID_COLOR">GRID_COLOR</a></li><li><a href="global.html#GRID_LINE_SIZE">GRID_LINE_SIZE</a></li><li><a href="global.html#helloWorld">helloWorld</a></li><li><a href="global.html#OCCUPIED_SQUARE">OCCUPIED_SQUARE</a></li><li><a href="global.html#SELECTED_SQUARE">SELECTED_SQUARE</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu May 13 2021 13:52:12 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
