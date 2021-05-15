@@ -46,6 +46,7 @@ const InputElement = class extends React.Component {
     this.state = {value: ''};
 
   }
+  
   /**
   * It will render the component <input> into the form
   * @returns the label dom node that comes  with an input inside
@@ -102,6 +103,7 @@ const InputForm = class extends React.Component {
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
   }
+
   /**
    * It will render the component InputForm into the div "main"
    * @returns DOM node with a div containing a form
@@ -172,6 +174,7 @@ const InputForm = class extends React.Component {
   createItem (name, amount, price) {
     return {name, amount, price};
   }
+
   /**
    * It will render the component div "main" into the div "root" that
    * contains both the list and the form
