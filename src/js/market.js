@@ -113,7 +113,7 @@ const InputForm = class extends React.Component {
       </div>
     );
   }
- }
+}
 
  /**
  * @class Market
