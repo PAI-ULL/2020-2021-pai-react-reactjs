@@ -52,19 +52,10 @@ const InputElement = class extends React.Component {
   * @returns the label dom node that comes  with an input inside
   */
   render() {
-    if (this.props.field === "price") {
-      return (
-        <label class="elementInput">
-            <span class="inputName">{this.props.text}:</span>
-            <span class="input"><input type={this.props.type} step=".01" value={this.state.name} 
-            name={this.props.field} onChange={this.props.onChange} /></span>
-        </label>
-      );
-    }
     return (
       <label class="elementInput">
           <span class="inputName">{this.props.text}:</span>
-          <span class="input"><input type={this.props.type} value={this.state.name} 
+          <span class="input"><input step={this.props.field==='price' ? '.01' : null} type={this.props.type} value={this.state.name} 
           name={this.props.field} onChange={this.props.onChange} /></span>
       </label>
     );
